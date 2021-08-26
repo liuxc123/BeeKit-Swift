@@ -15,7 +15,7 @@ class Tests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        XCTAssert(Validator.exactLength(4).apply("Pass"), "Pass")        
     }
     
     func testPerformanceExample() {

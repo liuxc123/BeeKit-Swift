@@ -1,29 +1,49 @@
-# BeeKit
+# BeeKit-Swift swift版本工具集
 
-[![CI Status](https://img.shields.io/travis/liuxc123/BeeKit.svg?style=flat)](https://travis-ci.org/liuxc123/BeeKit)
-[![Version](https://img.shields.io/cocoapods/v/BeeKit.svg?style=flat)](https://cocoapods.org/pods/BeeKit)
-[![License](https://img.shields.io/cocoapods/l/BeeKit.svg?style=flat)](https://cocoapods.org/pods/BeeKit)
-[![Platform](https://img.shields.io/cocoapods/p/BeeKit.svg?style=flat)](https://cocoapods.org/pods/BeeKit)
+## 组件
 
-## Example
+### 核心组件
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+#### BEEKit
 
-## Requirements
+- BEEApp 
+- BEEBiometrics
+- BEEError
+- BEEHUD
+- BEELabel
+- BEELog
+- BEEPassword
+- BEEPreferencesExplorer
+- BEESystemSound
+- LinearView
 
-## Installation
+#### Protocol
 
-BeeKit is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+- AnyOptional
+- AssociatedObjectProtocol
+- Enumerable
+- NibProtocol
+- NotificationProtocol
+- Refreshable
+- StatefulViewable
+- TextProtocol
+- Then
+- UserDefaultsProtocol
+- ValueProtocol
+
+#### LimitInput
+
+- LimitTextField
+- LimitTextView
+- LimitSearchBar
+   
+## Cocoapods 安装
 
 ```ruby
-pod 'BeeKit'
+pod 'BeeKit-Swift'
 ```
 
-## Author
+## 作者
 
 liuxc123, lxc_work@126.com
 
-## License
-
-BeeKit is available under the MIT license. See the LICENSE file for more info.
