@@ -1,0 +1,6 @@
+framework module CatalogByConvention {
+  umbrella header "CatalogByConvention-umbrella.h"
+
+  export *
+  module * { export * }
+}

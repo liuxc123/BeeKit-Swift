@@ -12,6 +12,7 @@ PODS:
     - SwiftyAttributes
   - BeeKit-Swift/LimitInput (1.1.0):
     - BeeKit-Swift/Core
+  - CatalogByConvention (2.5.2)
   - CocoaLumberjack/Core (3.7.2)
   - CocoaLumberjack/Swift (3.7.2):
     - CocoaLumberjack/Core
@@ -50,11 +51,13 @@ PODS:
 
 DEPENDENCIES:
   - BeeKit-Swift (from `../`)
+  - CatalogByConvention
   - FBSnapshotTestCase (~> 2.1.4)
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - CatalogByConvention
     - CocoaLumberjack
     - FBSnapshotTestCase
     - MBProgressHUD
@@ -71,6 +74,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BeeKit-Swift: bddaf3e4502d1833ef121b4147db8d19857550b4
+  CatalogByConvention: ef713654160053be026fa4648dd28caf6b5ca4e1
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -81,6 +85,6 @@ SPEC CHECKSUMS:
   SwiftValidators: b1cb650ce02ef6ad894f1d471f970b249c794342
   SwiftyAttributes: e3e13891ddac3c62b3d7798d5c3969cea88e62bb
 
-PODFILE CHECKSUM: f209737e758c4844d751c36f47d7a15f990e16d8
+PODFILE CHECKSUM: 1e08f84c798eed2830a546bfd21b16007353f3c4
 
 COCOAPODS: 1.10.1

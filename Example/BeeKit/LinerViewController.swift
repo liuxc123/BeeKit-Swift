@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LinerViewController.swift
 //  BeeKit
 //
 //  Created by liuxc123 on 08/25/2021.
@@ -10,22 +10,19 @@ import UIKit
 import BeeKit_Swift
 import SnapKit
 
-class ViewController: UIViewController {
+class LinerViewController: UIViewController {
 
     lazy var linearView = LinearView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-                
+        self.title = "LinerView"
+        self.view.backgroundColor = .white
+        
         setup()
         setupViews()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        try? BEEPreferencesExplorer.open(.general)
-    }
-    
+
     private func setup() {
         view.addSubview(linearView)
         linearView.layer.shadowColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -68,8 +65,6 @@ class ViewController: UIViewController {
             make.height.equalTo(160)
         }
         
-        let label = UILabel(text: "dadssda")
-        
         linearView.layout(.vertical)
         .view(a)
         .spacing(10)
@@ -79,7 +74,6 @@ class ViewController: UIViewController {
         .spacing(30)
         .view(d)
         .spacing(10)
-        .view(label)
         .done()
         
         // 模拟某视图隐藏
@@ -99,3 +93,10 @@ class ViewController: UIViewController {
 
 }
 
+extension LinerViewController {
+    
+    @objc class func catalogBreadcrumbs() -> [String] {
+        return ["LinerView"]
+    }
+    
+}
