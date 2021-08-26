@@ -1,5 +1,5 @@
 import XCTest
-import BeeKit
+import BeeKit_Swift
 
 class Tests: XCTestCase {
     

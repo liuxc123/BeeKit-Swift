@@ -3,7 +3,8 @@ use_frameworks!
 platform :ios, '9.0'
 
 target 'BeeKit_Example' do
-  pod 'BeeKit', :path => '../'
+  pod 'BeeKit-Swift', :path => '../'
+  pod 'SnapKit'
 
   target 'BeeKit_Tests' do
     inherit! :search_paths

@@ -1,0 +1,66 @@
+{
+  "name": "BeeKit-Swift",
+  "version": "1.1.0",
+  "summary": "A tool of BeeKit.",
+  "homepage": "https://github.com/liuxc123/BeeKit-Swift",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "liuxc123": "lxc_work@126.com"
+  },
+  "source": {
+    "git": "https://github.com/liuxc123/BeeKit-Swift.git",
+    "tag": "1.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "swift_versions": "5.0",
+  "requires_arc": true,
+  "frameworks": [
+    "UIKit",
+    "Foundation"
+  ],
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Source/Core/Source/**/*",
+      "resources": "Source/Core/Assets/**/*",
+      "dependencies": {
+        "CocoaLumberjack/Swift": [
+
+        ],
+        "SwifterSwift": [
+
+        ],
+        "SwiftValidators": [
+
+        ],
+        "SwiftyAttributes": [
+
+        ],
+        "MJRefresh": [
+
+        ],
+        "MBProgressHUD": [
+
+        ],
+        "Schedule": [
+
+        ]
+      }
+    },
+    {
+      "name": "LimitInput",
+      "source_files": "Source/LimitInput/Source/**/*",
+      "dependencies": {
+        "BeeKit-Swift/Core": [
+
+        ]
+      }
+    }
+  ],
+  "swift_version": "5.0"
+}

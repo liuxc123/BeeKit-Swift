@@ -1,0 +1,6 @@
+framework module BeeKit_Swift {
+  umbrella header "BeeKit-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

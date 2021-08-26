@@ -1,0 +1,86 @@
+PODS:
+  - BeeKit-Swift (1.1.0):
+    - BeeKit-Swift/Core (= 1.1.0)
+    - BeeKit-Swift/LimitInput (= 1.1.0)
+  - BeeKit-Swift/Core (1.1.0):
+    - CocoaLumberjack/Swift
+    - MBProgressHUD
+    - MJRefresh
+    - Schedule
+    - SwifterSwift
+    - SwiftValidators
+    - SwiftyAttributes
+  - BeeKit-Swift/LimitInput (1.1.0):
+    - BeeKit-Swift/Core
+  - CocoaLumberjack/Core (3.7.2)
+  - CocoaLumberjack/Swift (3.7.2):
+    - CocoaLumberjack/Core
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.7.2)
+  - Schedule (2.1.0)
+  - SnapKit (4.2.0)
+  - SwifterSwift (5.1.0):
+    - SwifterSwift/AppKit (= 5.1.0)
+    - SwifterSwift/CoreGraphics (= 5.1.0)
+    - SwifterSwift/CoreLocation (= 5.1.0)
+    - SwifterSwift/Dispatch (= 5.1.0)
+    - SwifterSwift/Foundation (= 5.1.0)
+    - SwifterSwift/MapKit (= 5.1.0)
+    - SwifterSwift/SceneKit (= 5.1.0)
+    - SwifterSwift/SpriteKit (= 5.1.0)
+    - SwifterSwift/SwiftStdlib (= 5.1.0)
+    - SwifterSwift/UIKit (= 5.1.0)
+  - SwifterSwift/AppKit (5.1.0)
+  - SwifterSwift/CoreGraphics (5.1.0)
+  - SwifterSwift/CoreLocation (5.1.0)
+  - SwifterSwift/Dispatch (5.1.0)
+  - SwifterSwift/Foundation (5.1.0)
+  - SwifterSwift/MapKit (5.1.0)
+  - SwifterSwift/SceneKit (5.1.0)
+  - SwifterSwift/SpriteKit (5.1.0)
+  - SwifterSwift/SwiftStdlib (5.1.0)
+  - SwifterSwift/UIKit (5.1.0)
+  - SwiftValidators (9.0.3)
+  - SwiftyAttributes (5.1.1)
+
+DEPENDENCIES:
+  - BeeKit-Swift (from `../`)
+  - FBSnapshotTestCase (~> 2.1.4)
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - FBSnapshotTestCase
+    - MBProgressHUD
+    - MJRefresh
+    - Schedule
+    - SnapKit
+    - SwifterSwift
+    - SwiftValidators
+    - SwiftyAttributes
+
+EXTERNAL SOURCES:
+  BeeKit-Swift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BeeKit-Swift: bddaf3e4502d1833ef121b4147db8d19857550b4
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
+  Schedule: 00e6d7bbdbdb000fd1f51a7d10e9f88a8c451fda
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwifterSwift: a9e8e144832638c2850b43da5feaf9598c6ad65b
+  SwiftValidators: b1cb650ce02ef6ad894f1d471f970b249c794342
+  SwiftyAttributes: e3e13891ddac3c62b3d7798d5c3969cea88e62bb
+
+PODFILE CHECKSUM: f209737e758c4844d751c36f47d7a15f990e16d8
+
+COCOAPODS: 1.10.1
