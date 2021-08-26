@@ -58,11 +58,12 @@ extension LimitInputProtocol {
         case true:
             let startIndex = String.Index(utf16Offset: range.location, in: string)
             let endIndex = String.Index(utf16Offset: range.location + range.length, in: string)
+        
             // 全选删除
             if startIndex <= result.startIndex {
                 range.location = 0
                 range.length = 0
-                result = String(result[endIndex..<result.endIndex])
+                result = result.isEmpty ? result : String(result[endIndex..<result.endIndex])
             }
             // 尾部删除
             else if endIndex >= result.endIndex {
@@ -74,6 +75,7 @@ extension LimitInputProtocol {
                 range.length = 0
                 result = String(result[result.startIndex...startIndex]) + String(result[endIndex..<result.endIndex])
             }
+
         case false:
             /// 正常输入
             let startIndex = String.Index(utf16Offset: range.location, in: string)
@@ -88,8 +90,12 @@ extension LimitInputProtocol {
                 range.location += text.utf16.count
                 result = result + text
             }
+            // 全部替换
+            else if startIndex == result.startIndex && endIndex >= result.endIndex {
+                result = text
+            }
             // 局部替换
-            else{
+            else {
                 range.length = text.utf16.count
                 result = String(result[result.startIndex..<startIndex]) + text + String(result[endIndex..<result.endIndex])
             }
@@ -158,11 +164,12 @@ extension LimitInputProtocol {
         for item in replaces {
             let list = text.components(separatedBy: item.key)
             guard list.count > 1 else { continue }
-            offset += (list.count - 1) * (item.value.count - item.key.count)
+            offset += (list.count - 1) * (item.value.utf16.count - item.key.utf16.count)
             text = list.joined(separator: item.value)
         }
 
-        range.location += offset
+        range.length = max(0, range.length + offset)
+        range.location = max(0, range.location + offset)
         return IR(text: text, range: range)
     }
 
@@ -170,10 +177,10 @@ extension LimitInputProtocol {
         var text = ir.text
         var range = ir.range
         if text.count > wordLimit {
-            text.slice(from: 0, length: wordLimit)
+            text.slice(from: 0, to: wordLimit)
         }
-        range.length = 0
-        range.location = wordLimit
+        range.length = min(wordLimit, range.length)
+        range.location = min(wordLimit, range.location)
         return IR(text: text, range: range)
     }
 
@@ -185,12 +192,12 @@ extension LimitInputProtocol {
 
         text = text.filter({ (char) -> Bool in
             let isEmoji = char.isEmoji
-            offset -= 1
+            if isEmoji { offset -= 1 }
             return !isEmoji
         })
 
-        range.length = 0
-        range.location = text.count
+        range.length = max(0, range.length + offset)
+        range.location = max(0, range.location + offset)
         return IR(text: text, range: range)
     }
 
@@ -227,6 +234,7 @@ public extension LimitInputProtocol {
     ///   - action: 执行方法名
     /// - Returns: 是否响应
     func canPerformAction(_ respoder: UIResponder,text: String, action: Selector) -> Bool {
+        
         if disables == LimitInputDisableState.allCases { return false }
 
         guard let state = LimitInputDisableState(rawValue: action.description) else {
@@ -243,8 +251,10 @@ public extension LimitInputProtocol {
     }
 }
 
+
 extension UITextInput {
 
+    /// 选择范围
     var selectedRange: NSRange? {
         set {
             let beginning = beginningOfDocument
@@ -263,4 +273,3 @@ extension UITextInput {
         }
     }
 }
-
