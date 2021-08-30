@@ -17,6 +17,7 @@ public protocol LimitInputProtocol: NSObjectProtocol {
     var emojiLimitEvent: ((_ text: String)->())? { set get }
     // 完成输入
     var textDidChangeEvent: ((_ text: String)->())? { set get }
+    // 预处理文本
     var preIR: IR? { set get }
 }
 
@@ -42,23 +43,23 @@ public extension LimitInputProtocol {
 }
 
 extension LimitInputProtocol {
-
+    
     /// 获取输入后文本
     ///
     /// - Parameters:
-    ///   - string: 原有字符串
-    ///   - text: 插入字符
+    ///   - text: 原有字符串
+    ///   - string: 插入字符
     ///   - range: 插入字符范围
     /// - Returns: 处理后文本与光标位置
-    func getAfterInputText(string: String, text: String, range: NSRange) -> IR {
-        var result = string
+    func getAfterInputText(text: String, string: String, range: NSRange) -> IR {
+        var result = text
         var range = range
-        // 删除操作
-        switch text.isEmpty {
-        case true:
-            let startIndex = String.Index(utf16Offset: range.location, in: string)
-            let endIndex = String.Index(utf16Offset: range.location + range.length, in: string)
         
+        switch string.isEmpty {
+        case true: // 删除操作
+            let startIndex = String.Index(utf16Offset: range.location, in: text)
+            let endIndex = String.Index(utf16Offset: range.location + range.length, in: text)
+            
             // 全选删除
             if startIndex <= result.startIndex {
                 range.location = 0
@@ -67,7 +68,7 @@ extension LimitInputProtocol {
             }
             // 尾部删除
             else if endIndex >= result.endIndex {
-                range.location -= text.utf16.count
+                range.location -= string.utf16.count
                 result = String(result[result.startIndex...startIndex])
             }
             // 局部删除
@@ -75,34 +76,34 @@ extension LimitInputProtocol {
                 range.length = 0
                 result = String(result[result.startIndex...startIndex]) + String(result[endIndex..<result.endIndex])
             }
-
-        case false:
-            /// 正常输入
-            let startIndex = String.Index(utf16Offset: range.location, in: string)
-            let endIndex = String.Index(utf16Offset: range.location + range.length, in: string)
+            
+        case false: // 正常输入
+            let startIndex = String.Index(utf16Offset: range.location, in: text)
+            let endIndex = String.Index(utf16Offset: range.location + range.length, in: text)
             // 头部添加
             if startIndex <= result.startIndex, range.length == 0 {
-                range.location += text.utf16.count
-                result = text + result
+                range.location += string.utf16.count
+                result = string + result
             }
             // 尾部添加
             else if endIndex >= result.endIndex, range.length == 0 {
-                range.location += text.utf16.count
-                result = result + text
+                range.location += string.utf16.count
+                result = result + string
             }
             // 全部替换
             else if startIndex == result.startIndex && endIndex >= result.endIndex {
-                result = text
+                result = string
             }
             // 局部替换
             else {
-                range.length = text.utf16.count
-                result = String(result[result.startIndex..<startIndex]) + text + String(result[endIndex..<result.endIndex])
+                range.length = string.utf16.count
+                result = String(result[result.startIndex..<startIndex]) + string + String(result[endIndex..<result.endIndex])
             }
         }
+        
         return IR(text: result, range: range)
     }
-
+    
 
     /// 文本输入完成后处理
     ///
@@ -115,7 +116,6 @@ extension LimitInputProtocol {
         let ir0 = replaceEmojiLimit(ir: ir)
         let ir1 = replaces(ir: ir0)
         let ir2 = match(text: ir1.text) ? ir1 : self.preIR ?? IR(text: "", range: NSRange(location: 0, length: 0))
-        if self.preIR?.text == ir2.text { return nil }
         return ir2
     }
 
@@ -127,27 +127,22 @@ extension LimitInputProtocol {
     ///   - string: 待输入文本
     /// - Returns: 能否输入
     public func shouldChange(input: UITextInput, range: NSRange, string: String) -> Bool {
-        if string.isEmpty { return true }
+
         guard input.markedTextRange == nil, let allRange = input.textRange(from: input.beginningOfDocument, to: input.endOfDocument),
               let text = input.text(in: allRange) else {
             return true
         }
-
-        let ir1 = getAfterInputText(string: text, text: string, range: range)
+        
+        let ir = getAfterInputText(text: text, string: string, range: range)
+        let ir0 = replaceWordLimit(ir: ir)
+        let ir1 = replaceEmojiLimit(ir: ir0)
         let ir2 = replaces(ir: ir1)
-
-        if !match(text: ir2.text) { return false }
-
-        /// 表情限制
-        if string.containsEmoji && emojiLimit {
-            emojiLimitEvent?(string)
+        
+        if !match(text: ir2.text) {
             return false
         }
-
-        // 处理字符限制
-        if ir2.text.count > wordLimit { return false }
-
-        self.preIR = ir1
+             
+        self.preIR = ir
         return true
     }
 
@@ -216,10 +211,16 @@ public extension LimitInputProtocol {
             overWordLimitEvent?(text)
             return false
         }
+        
+        if text.containsEmoji && emojiLimit {
+            emojiLimitEvent?(text)
+            return false
+        }
 
         for item in matchs {
             if !item.code(text) { return false }
         }
+        
         return true
     }
 
@@ -241,13 +242,7 @@ public extension LimitInputProtocol {
             return true
         }
 
-        let res = !disables.contains(state)
-
-        if state == .paste, let str = UIPasteboard.general.string {
-            return !disables.contains(.paste) && (str.count + text.count) <= wordLimit
-        }
-
-        return res
+        return !disables.contains(state)
     }
 }
 
@@ -273,3 +268,4 @@ extension UITextInput {
         }
     }
 }
+

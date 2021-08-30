@@ -15,7 +15,6 @@ open class LimitTextField: UITextField,LimitInputProtocol {
     public var emojiLimitEvent: ((String) -> ())? = nil
     /// 完成输入
     public var textDidChangeEvent: ((_ text: String)->())? = nil
-
     /// 文字替换
     public var replaces: [LimitInputReplace] = LimitInput.replaces
     /// 判断输入是否合法的

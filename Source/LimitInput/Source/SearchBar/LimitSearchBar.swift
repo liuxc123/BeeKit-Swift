@@ -7,8 +7,6 @@ public class LimitSearchBar: UISearchBar,LimitInputProtocol {
 
     public var preIR: IR? = nil
 
-    public var replacementList: [(key: String, value: String)] = []
-
     /// 字数限制
     public var wordLimit: Int = LimitInput.wordLimit
     /// 文字超出字符限制执行
@@ -19,15 +17,12 @@ public class LimitSearchBar: UISearchBar,LimitInputProtocol {
     public var emojiLimitEvent: ((String) -> ())? = nil
     /// 完成输入
     public var textDidChangeEvent: ((_ text: String)->())? = nil
-    
     /// 文字替换
     public var replaces: [LimitInputReplace] = LimitInput.replaces
     /// 判断输入是否合法的
     public var matchs: [LimitInputMatch] = LimitInput.matchs
     /// 菜单禁用项
     public var disables: [LimitInputDisableState] = LimitInput.disables
-    /// 设置占位文本偏移
-    public var placeholderEdgeInsets: UIEdgeInsets = .zero
     
     /// 调整至iOS11之前的风格(高度调整)
     public var isEnbleOldStyleBefore11 = LimitSearchBar.isEnbleOldStyleBefore11 {

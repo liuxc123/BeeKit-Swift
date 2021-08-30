@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0447013E26D624FA008ADB6B /* BeeKit-Swift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "BeeKit-Swift.podspec"; path = "../BeeKit-Swift.podspec"; sourceTree = "<group>"; };
+		0447013E26D624FA008ADB6B /* BeeKit-Swift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "BeeKit-Swift.podspec"; path = "../BeeKit-Swift.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		21043F4111BA5B2677FB910D /* Pods_BeeKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeeKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA18811ECA21DED58CBD982 /* Pods-BeeKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-BeeKit_Example/Pods-BeeKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4316AA355F70CF1C552AA308 /* Pods-BeeKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BeeKit_Tests/Pods-BeeKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };

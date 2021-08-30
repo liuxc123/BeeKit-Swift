@@ -12,7 +12,6 @@ public class LimitTextView: UITextView,LimitInputProtocol {
     public var emojiLimit: Bool = LimitInput.emojiLimit
     /// 表情限制回调
     public var emojiLimitEvent: ((String) -> ())? = nil
-
     /// 完成输入
     public var textDidChangeEvent: ((_ text: String)->())? = nil
     /// 文字替换

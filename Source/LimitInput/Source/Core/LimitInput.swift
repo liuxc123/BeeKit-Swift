@@ -4,7 +4,7 @@ public struct LimitInput {
     // 字数限制
     public static var wordLimit: Int = Int.max
     // 表情限制
-    public static var emojiLimit: Bool = true
+    public static var emojiLimit: Bool = false
     // 文本替换 保证光标位置
     public static var replaces: [LimitInputReplace] = []
     // 判断输入是否合法的
